@@ -9,7 +9,7 @@
     function CommentsService($http) {
         var service = {};
         var base_url = 'http://113.160.225.76:8989/elunch/';
-        var days = 10;
+        var days = 60;
         service.getComments = getComments;
         service.postReply = postReply;
         service.postComment = postComment;

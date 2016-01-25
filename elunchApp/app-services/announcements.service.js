@@ -9,7 +9,7 @@
     function AnnouncementsService($http) {
         var service = {};
         var base_url = 'http://localhost/WebPortal/Development/source/eLunch/';
-        var days = 10;
+        var days = 60;
         service.getAnnouncements = getAnnouncements;
         service.postReply = postReply;
         service.getRepliesOfAnnouncement = getRepliesOfAnnouncement;
