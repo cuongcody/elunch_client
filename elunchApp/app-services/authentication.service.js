@@ -78,9 +78,11 @@
             $http.defaults.headers.common.Authorization = 'Bearer';
         }
 
-        function expiredSession() {
-            FlashService.Error('Your session expired.Please re-login');
-            $location.path('/login');
+        function expiredSession(res) {
+            if (res.status === '401') {
+                FlashService.Error('Your session expired. Please re-login !');
+                $location.path('/login');
+            }
         }
     }
 
