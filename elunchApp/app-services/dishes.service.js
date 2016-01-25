@@ -40,7 +40,8 @@
         }
 
         function handleError(error) {
-            AuthenticationService.expiredSession();
+            console.log(service.responseError);
+            // AuthenticationService.expiredSession();
         }
     }
 
