@@ -5,8 +5,8 @@
         .module('app')
         .factory('AnnouncementsService', AnnouncementsService);
 
-    AnnouncementsService.$inject = ['$http'];
-    function AnnouncementsService($http) {
+    AnnouncementsService.$inject = ['$http', 'AuthenticationService'];
+    function AnnouncementsService($http, AuthenticationService) {
         var service = {};
         var base_url = 'http://113.160.225.76:8989/elunch/';
         var days = 60;
@@ -18,7 +18,7 @@
         return service;
 
         function getAnnouncements(user_id, current_date) {
-            return $http.get(base_url + 'user/'+ user_id + '/announcements?to='+ current_date + "&days=" + days).then(handleSuccess, handleError('Error getting announcements'));
+            return $http.get(base_url + 'user/'+ user_id + '/announcements?to='+ current_date + "&days=" + days).then(handleSuccess, handleError);
         }
 
         function postReply(data) {
@@ -28,11 +28,11 @@
                 url: base_url + 'announcement',
                 data : data,
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
-            }).then( handleSuccess, handleError('Error post Reply'));
+            }).then( handleSuccess, handleError);
         }
 
         function getRepliesOfAnnouncement(user_id, announcement_id) {
-            return $http.get(base_url + 'user/'+ user_id + '/announcement/'+ announcement_id).then(handleSuccess, handleError('Error getting announcements'));
+            return $http.get(base_url + 'user/'+ user_id + '/announcement/'+ announcement_id).then(handleSuccess, handleError);
         }
 
         function haveReadRepliesAnnouncement(data) {
@@ -42,7 +42,7 @@
                 url: base_url + 'read_replies_announcement',
                 data : data,
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
-            }).then( handleSuccess, handleError('Error have read replies announcement'));
+            }).then( handleSuccess, handleError);
         }
 
         function haveReadAnnouncement(data) {
@@ -52,7 +52,7 @@
                 url: base_url + 'read_announcement',
                 data : data,
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
-            }).then( handleSuccess, handleError('Error have read replies announcement'));
+            }).then( handleSuccess, handleError);
         }
 
         // private functions
@@ -62,10 +62,8 @@
             return res.data;
         }
 
-        function handleError(error) {
-            return function () {
-                return { success: false, message: error };
-            };
+        function handleError(res) {
+            AuthenticationService.expiredSession(res);
         }
     }
 

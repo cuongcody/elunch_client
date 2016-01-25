@@ -29,7 +29,7 @@
                 url: base_url + 'vote',
                 data : data,
                 headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
-            }).then( handleSuccess, handleError('Error vote'));
+            }).then( handleSuccess, handleError);
         }
 
         // private functions

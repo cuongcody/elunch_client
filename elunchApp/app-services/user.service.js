@@ -5,8 +5,8 @@
         .module('app')
         .factory('UserService', UserService);
 
-    UserService.$inject = ['$http'];
-    function UserService($http) {
+    UserService.$inject = ['$http', 'AuthenticationService'];
+    function UserService($http, AuthenticationService) {
         var service = {};
         var base_url = 'http://113.160.225.76:8989/elunch/';
         service.Login = Login;
@@ -23,16 +23,16 @@
                   url: base_url + 'login',
                   data : user,
                   headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
-            }).then( handleSuccess, handleError('Error login'));
+            }).then( handleSuccess, handleError);
             //return $http.post('http://localhost/login', {email:email, password:password}).then(handleSuccess, handleError('Error login'));
         }
 
         function GetAll() {
-            return $http.get(base_url + 'users').then(handleSuccess, handleError('Error getting all users'));
+            return $http.get(base_url + 'users').then(handleSuccess, handleError);
         }
 
         function GetById(id) {
-            return $http.get(base_url + 'user/' + id).then(handleSuccess, handleError('Error getting user by id'));
+            return $http.get(base_url + 'user/' + id).then(handleSuccess, handleError);
         }
 
         function changePasswordOfUserById(data) {
@@ -41,7 +41,7 @@
                   url: base_url + 'change_password/',
                   data : data['params'],
                   headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
-            }).then( handleSuccess, handleError('Error updating password of user'));
+            }).then( handleSuccess, handleError);
         }
 
         function Update(data) {
@@ -50,7 +50,7 @@
                   url: base_url + 'user/' + data['user_id'],
                   data : data['params'],
                   headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
-            }).then( handleSuccess, handleError('Error update user'));
+            }).then( handleSuccess, handleError);
         }
 
         // private functions
@@ -60,10 +60,8 @@
             return res.data;
         }
 
-        function handleError(error) {
-            return function () {
-                return { success: false, message: error };
-            };
+        function handleError(res) {
+            AuthenticationService.expiredSession(res);
         }
     }
 

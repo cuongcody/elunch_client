@@ -5,8 +5,8 @@
         .module('app')
         .factory('MenuService', MenuService);
 
-    MenuService.$inject = ['$http'];
-    function MenuService($http) {
+    MenuService.$inject = ['$http', 'AuthenticationService'];
+    function MenuService($http, AuthenticationService) {
         var service = {};
         var base_url = 'http://113.160.225.76:8989/elunch/';
 
@@ -15,12 +15,12 @@
         return service;
 
         function GetMeals() {
-            return $http.get(base_url + 'meals/').then(handleSuccess, handleError('Error getting meals'));
+            return $http.get(base_url + 'meals/').then(handleSuccess, handleError);
         }
 
         function GetMealsByDate(date) {
             console.log(base_url + 'meals?from=' + date + "&days=1");
-            return $http.get(base_url + 'meals?from=' + date + "&days=0").then(handleSuccess, handleError('Error getting meals'));
+            return $http.get(base_url + 'meals?from=' + date + "&days=0").then(handleSuccess, handleError);
         }
 
         // private functions
@@ -30,10 +30,8 @@
             return res.data;
         }
 
-        function handleError(error) {
-            return function () {
-                return { success: false, message: error };
-            };
+        function handleError(res) {
+            AuthenticationService.expiredSession(res);
         }
     }
 

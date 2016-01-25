@@ -13,7 +13,7 @@
     <div class="row weekly-menu" ng-repeat="(key, value) in vm.meals">
         <h3 class="push-bit menu-day"><strong>{{key | date:'EEEE'}}</strong></h3>
         <div class='col-xs-12'>
-            <div class="row portfolio" ng-if="$index % 4 == 0" ng-show="value" ng-repeat="dish in value">
+            <div class="row portfolio" ng-if="$index % 5 == 0" ng-show="value" ng-repeat="dish in value">
                 <div class="col-xs-12 col-sm-3 portfolio-item animation-fadeInQuick" ng-if="$index < value.length">
                     <a href="javascript:void(0);">
                         <img src="{{value[$index].image}}" alt="Image" class="img-responsive">
@@ -36,6 +36,13 @@
                     <a href="javascript:void(0);">
                         <img src="{{value[$index + 3].image}}" alt="Image" class="img-responsive">
                         <span class="portfolio-item-info"><strong>{{value[$index + 3].name}}</strong></span>
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-3 portfolio-item animation-fadeInQuick" ng-if="$index + 4 < value.length">
+                    <a href="javascript:void(0);">
+                        <img src="{{value[$index + 4].image}}" alt="Image" class="img-responsive">
+                        <span class="portfolio-item-info"><strong>{{value[$index + 4].name}}</strong></span>
                     </a>
                 </div>
             </div>
