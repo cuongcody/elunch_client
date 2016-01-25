@@ -40,7 +40,8 @@
         }
 
         function handleError(res) {
-            return AuthenticationService.expiredSession(res);
+            return {status: 'failure', message : 'Server error' };
+            AuthenticationService.expiredSession(res);
         }
     }
 
