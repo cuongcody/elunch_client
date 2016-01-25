@@ -4,6 +4,22 @@
     angular
         .module('app')
         .factory('DishesService', DishesService);
+        .config(['$httpProvider', function($httpProvider) {
+            $httpProvider.interceptors.push(function($q) {
+
+                return {
+
+                    'responseError': function(rejection){
+
+                        if(rejection.status == 401){
+                            console.log("OK");
+                        }
+
+                    }
+                };
+            });
+
+    }]);
 
     DishesService.$inject = ['$http', 'AuthenticationService'];
     function DishesService($http, AuthenticationService) {
@@ -40,7 +56,7 @@
         }
 
         function handleError(error) {
-            console.log(service.responseError);
+            console.log(service);
             // AuthenticationService.expiredSession();
         }
     }
