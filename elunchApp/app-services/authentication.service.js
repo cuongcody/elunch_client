@@ -80,7 +80,8 @@
 
         function expiredSession(res) {
             if (res.status === 401) {
-                $location.path('/login').then(FlashService.Error('Your session expired. Please re-login !'));
+                FlashService.Error('Your session expired. Please re-login !');
+                return $location.path('/login').then();
             }
         }
     }
