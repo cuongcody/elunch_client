@@ -14,7 +14,7 @@
         <h3 class="push-bit menu-day"><strong>{{key | date:'EEEE'}}</strong></h3>
         <div class='col-xs-12'>
             <div class="row portfolio" ng-if="$index % 5 == 0" ng-show="value" ng-repeat="dish in value">
-                <div class="col-xs-12 col-sm-2 portfolio-item animation-fadeInQuick" ng-if="$index < value.length">
+                <div class="col-xs-12 col-sm-offset-1 col-sm-2 portfolio-item animation-fadeInQuick" ng-if="$index < value.length">
                     <a href="javascript:void(0);">
                         <img src="{{value[$index].image}}" alt="Image" class="img-responsive">
                         <span class="portfolio-item-info"><strong>{{value[$index].name}}</strong></span>
