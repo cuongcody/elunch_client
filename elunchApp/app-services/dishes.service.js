@@ -16,11 +16,11 @@
         return service;
 
         function GetDishes() {
-            return $http.get(base_url + 'dishes/').then(handleSuccess, handleError('Error getting meals'));
+            return $http.get(base_url + 'dishes/').then(handleSuccess, handleError);
         }
 
         function GetVoteForDishes(user_id) {
-            return $http.get(base_url + 'user/'+ user_id + '/vote_dishes').then(handleSuccess, handleError('Error getting meals'));
+            return $http.get(base_url + 'user/'+ user_id + '/vote_dishes').then(handleSuccess, handleError;
         }
 
         function voteForDishes(data) {
@@ -39,7 +39,7 @@
             return res.data;
         }
 
-        function handleError(error) {
+        function handleError(res) {
             AuthenticationService.expiredSession();
             return res;
         }
