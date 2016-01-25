@@ -1,0 +1,65 @@
+<section class="site-content site-section animation-slideDown">
+    <div class="container">
+        <div class="row user-profile">
+            <div class="col-xs-12 col-sm-6 col-md-4 site-block user-info">
+                <div class="site-block text-center">
+                    <img class='img-thumbnail img-circle img-responsive' src='{{vm.user.avatar_content_file}}'>
+                    <h3 class="h2 site-heading"><strong>{{vm.user.first_name}}</strong> {{vm.user.last_name}}</h3>
+                    <div>
+                        <strong>Lunch shift:</strong> {{vm.user.start_time}} - {{vm.user.end_time}}<br>
+                        <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">{{vm.user.email}}</a><br>
+                        <button ng-click='vm.isPreferencesView = !vm.isPreferencesView' class='btn btn-success'>{{vm.isPreferencesView && 'Change password' || 'Preferences' }}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-8 site-block">
+                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                <div ng-show='vm.isPreferencesView'>
+                    <h3 class="h2 site-heading"><strong>Preferences</strong></h3>
+                    <form name="form_preferences" ng-submit='vm.updateUser()'>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="vm.isVegan" > Vegan
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class=" { 'has-error' : form_preferences.whatTaste.$dirty && form_preferences.whatTaste.$error.required }">
+                            <textarea id="whatTaste" name="whatTaste" ng-model="vm.whatTaste" rows="10" class="form-control input-lg" placeholder="Let us know how we can assist.." required></textarea>
+                            <span ng-show="form_preferences.whatTaste.$dirty && form_preferences.whatTaste.$error.required" class="help-block">Preference is required</span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" ng-disabled="form_preferences.$invalid || vm.dataLoading" class="btn btn-lg btn-primary">Save</button>
+                            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        </div>
+                    </form>
+                </div>
+                <div class="col-xs-12 col-sm-6" ng-show="!vm.isPreferencesView">
+                    <h3 class="h2 site-heading"><strong>Change password</strong></h3>
+                    <form name="form_changepassword" ng-submit='vm.changePassword()'>
+                        <div class="form-group" ng-class=" { 'has-error' : form_changepassword.currentPassword.$dirty && form_changepassword.currentPassword.$error.required }">
+                            <label for="password">Current Password</label>
+                            <input type="password" name="currentPassword" id="currentPassword" class="form-control" ng-model="vm.currentPassword" required />
+                            <span ng-show="form_changepassword.currentPassword.$dirty && form_changepassword.currentPassword.$error.required" class="help-block">Current password is required</span>
+                        </div>
+                        <div class="form-group" ng-class=" { 'has-error' : form_changepassword.newPassword.$dirty && form_changepassword.newPassword.$error.required }">
+                            <label for="password">New Password</label>
+                            <input type="password" name="newPassword" id="newPassword" class="form-control" ng-model="vm.newPassword" required />
+                            <span ng-show="form_changepassword.newPassword.$dirty && form_changepassword.newPassword.$error.required" class="help-block">New Password is required</span>
+                        </div>
+                        <div class="form-group" ng-class=" { 'has-error' : (form_changepassword.confirmNewPassword.$dirty && form_changepassword.confirmNewPassword.$error.required) || form_changepassword.confirmNewPassword.$error.noMatch}">
+                            <label for="password">Confirm New Password</label>
+                            <input type="password" name="confirmNewPassword" id="confirmNewPassword" class="form-control" ng-model="vm.confirmNewPassword" pw-check='newPassword' required />
+                            <span ng-show="form_changepassword.confirmNewPassword.$dirty && form_changepassword.confirmNewPassword.$error.required" class="help-block">Confirm New Password is required</span>
+                            <span ng-show="form_changepassword.confirmNewPassword.$error.noMatch" class="help-block">Password do not match</span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" ng-disabled="form_changepassword.$invalid || vm.dataLoading" class="btn btn-lg btn-primary">Save</button>
+                            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+    <title>Elunch</title>
+
+    <!-- Bootstrap is included in its original form, unaltered -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Related styles of various icon packs and plugins -->
+    <link rel="stylesheet" href="assets/css/plugins.css">
+
+    <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
+    <link rel="stylesheet" href="assets/css/themes.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link href="app-content/app.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/img/icon57.png" sizes="57x57">
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/vendor/modernizr-2.7.1-respond-1.4.2.min.js"></script>
+</head>
+<body>
+    <div id="page-container">
+        <div ng-show="location.path() != '/login'" ng-include="'shared/header/header.view.html'"></div>
+        <div class="mainview-animation" ng-view></div>
+        <div ng-show="location.path() != '/login'" ng-include="'shared/footer/footer.view.html'"></div>
+    </div>
+
+
+    <!-- Bootstrap.js, Jquery plugins and Custom JS code -->
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <script src="app-content/angular.js"></script>
+    <script src="app-content/angular-route.js"></script>
+    <script src="app-content/angular-cookies.js"></script>
+    <script src="app-content/angular-animate.js"></script>
+
+    <script src="app.js"></script>
+    <script src="app-services/authentication.service.js"></script>
+    <script src="app-services/flash.service.js"></script>
+    <script src="app-directive/angular-backtop.js"></script>
+    <script src="app-services/formatDate.service.js"></script>
+    <script src="app-services/user.service.js"></script>
+    <script src="app-services/menu.service.js"></script>
+    <script src="app-services/comments.service.js"></script>
+    <script src="app-services/announcements.service.js"></script>
+    <script src="app-services/dishes.service.js"></script>
+    <script src="app-services/tables.service.js"></script>
+
+    <script src="components/home/home.controller.js"></script>
+    <script src="components/login/login.controller.js"></script>
+    <script src="components/user_profile/user_profile.controller.js"></script>
+    <script src="components/menu/menu.controller.js"></script>
+    <script src="components/comments/comments.controller.js"></script>
+    <script src="components/announcements/announcements.controller.js"></script>
+    <script src="components/favourite_dishes/favourite_dishes.controller.js"></script>
+    <script src="components/tables/tables.controller.js"></script>
+</body>
+</html>

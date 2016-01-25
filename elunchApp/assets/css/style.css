@@ -1,0 +1,257 @@
+/* when hiding the picture */
+.ng-hide-add {
+    animation-name: slideDown;
+    -webkit-animation-name: slideDown;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-timing-function: ease;
+    -webkit-animation-timing-function: ease;
+    visibility: visible !important;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%);
+    }
+    50%{
+        transform: translateY(8%);
+    }
+    65%{
+        transform: translateY(-4%);
+    }
+    80%{
+        transform: translateY(4%);
+    }
+    95%{
+        transform: translateY(-2%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@-webkit-keyframes slideDown {
+    0% {
+        -webkit-transform: translateY(-100%);
+    }
+    50%{
+        -webkit-transform: translateY(8%);
+    }
+    65%{
+        -webkit-transform: translateY(-4%);
+    }
+    80%{
+        -webkit-transform: translateY(4%);
+    }
+    95%{
+        -webkit-transform: translateY(-2%);
+    }
+    100% {
+        -webkit-transform: translateY(0%);
+    }
+}
+
+/* when showing the picture */
+.ng-hide-remove {
+    animation-name: fadeInQuickInv;
+    -webkit-animation-name: fadeInQuickInv;
+    animation-duration: 0.5s;
+    -webkit-animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    visibility: visible !important;
+ }
+
+@keyframes fadeInQuickInv {
+    0% {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeInQuickInv {
+    0% {
+        -webkit-transform: scale(1.1);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/*
+ The animate class is apart of the element and the ng-enter class
+ is attached to the element once the enter animation event is triggered
+*/
+.mainview-animation.ng-enter {
+  -webkit-transition: .3s linear all; /* Safari/Chrome */
+  -moz-transition: .3s linear all; /* Firefox */
+  -o-transition: .3s linear all; /* Opera */
+  transition: .3s linear all; /* IE10+ and Future Browsers */
+}
+
+/**
+ * Pre animation -> enter
+ */
+.mainview-animation.ng-enter{
+  /* The animation preparation code */
+  opacity: 0;
+}
+
+/**
+ * Post animation -> enter
+ */
+.mainview-animation.ng-enter.ng-enter-active {
+  /* The animation code itself */
+  opacity: 1;
+}
+
+.site-logo {
+  background : url('../img/favicon.ico');
+  background-size: 30px 30px;
+  background-position: left;
+  background-repeat: no-repeat;
+}
+.site-logo strong {
+  padding-left: 30px;
+}
+
+.menu-day {
+  width: 100%;
+  padding: 5px;
+  background: #FF7700;
+  color: white;
+  text-align: center;
+}
+
+.login, .register {
+    margin-top: 100px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+.menus {
+    padding: 0px;
+    margin-bottom: -40px;
+}
+
+.weekly-menu {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.one-vote, .delete-vote {
+    display: none;
+}
+
+.dish img{
+}
+
+.dish:hover .add-vote{
+    background: #FF7700;
+    color: #000;
+}
+.dish:hover .delete-vote {
+    display: block;
+    color: white;
+}
+
+.dish:hover .remove-vote{
+    background: #D90000;
+    color: #000;
+}
+.dish:hover .one-vote {
+    display: block;
+    color: white;
+}
+
+.dishes-have-voted {
+}
+.all-dishes {
+
+}
+.menus .site-block {
+    padding: 0px;
+    margin-bottom: 0px;
+    height: 230px;
+    border-radius: 3px;
+}
+.menus .site-heading:hover {
+    text-decoration: underline;
+}
+.menus #site-user-profile {
+    background : url('../img/placeholders/menu/bg_user_profile.png');
+}
+.menus #site-menu {
+    background : url('../img/placeholders/menu/bg_view_menu.png');
+}
+
+.menus #site-comments {
+    background : url('../img/placeholders/menu/bg_comments.png');
+}
+
+.menus #site-announcements {
+    background : url('../img/placeholders/menu/bg_announcements.png');
+}
+
+.menus #site-favourite-dishes {
+    background : url('../img/placeholders/menu/bg_favorite_dishes.png');
+}
+.menus .site-heading {
+    background: black;
+    opacity: 0.7;
+    padding: 20px;
+    color: white;
+}
+
+#btn-vote {
+    position: fixed;
+    right: 70px;
+    bottom: 30px;
+    border-radius: 3px;
+    padding: 7px;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    background-color: #FF7700;
+    filter: alpha(opacity=20);
+    z-index: 1000;
+    text-decoration: none;
+}
+
+#btn-vote:hover {
+    color: #ffffff;
+    background-color: #1bbae1;
+    text-decoration: none;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+.table {
+    display: inline-block;
+    color: white;
+    background-color: #394263;
+    cursor: pointer;
+}
+.table-vegan {
+    background-color: #27ae60;
+}
+.table:hover {
+    background-color: #1bbae1;;
+}
+.table-active {
+    text-decoration: none;
+    background-color: #1bbae1;
+}
+.btn-choose-table {
+    margin-bottom: 20px;
+}
+
+.menu-item:hover h3 {
+    color: #FF7600;
+    text-decoration: none;
+}

@@ -1,0 +1,84 @@
+<section class="site-section site-section-light site-section-top themed-background-dark">
+    <div class="container">
+        <h1 class="animation-slideDown">
+            <strong>Comments</strong>
+            <button class="btn btn-primary" ng-click="vm.isAllCommentsView = !vm.isAllCommentsView">{{vm.isAllCommentsView && 'New' || 'All comments' }}</button>
+        </h1>
+    </div>
+</section>
+<section class="site-content site-section">
+    <div class="container text-center" ng-show='vm.isAllCommentsView'>
+        <div class="row row-items" ng-repeat="comment in vm.comments" ng-if="$index % 3 == 0">
+            <div class="col-sm-4">
+                <a href="#/comment/{{vm.comments[$index].id}}" class="circle themed-background animation-fadeIn3600" data-toggle="animation-appear" data-animation-class="animation-fadeIn3600" data-element-offset="-100" >
+                    <i class="fa fa-comments-o"></i>
+                </a>
+                <h4 class="site-heading"><strong>{{vm.comments[$index].title}}</strong></h4>
+                <div class="meal-date text-center"><strong>Meal date:</strong> <i>{{vm.comments[$index].meal_date | date:'yyyy-MMM-dd'}}</i></div>
+                <p class="text-left remove-margin">{{vm.comments[$index].content | limitTo : 300}}{{vm.comments[$index].content.length > 300 ? '...' : ''}}</p>
+                <span class="text-muted pull-right"><small><em>{{vm.formatDate(vm.comments[$index].created_at)}}</em></small></span>
+                <div class="unread-replies pull-left"><strong>Unread Replies:</strong> <span class="label label-warning">{{vm.comments[$index].number_of_replies - vm.comments[$index].number_of_have_read_replies}} / {{vm.comments[$index].number_of_replies}}</span></div>
+            </div>
+            <div class="col-sm-4" ng-if="$index + 1 < vm.comments.length">
+                <a href="#/comment/{{vm.comments[$index + 1].id}}" class="circle themed-background animation-fadeIn3600" data-toggle="animation-appear" data-animation-class="animation-fadeIn3600" data-element-offset="-100" >
+                    <i class="fa fa-comments-o"></i>
+                </a>
+                <h4 class="site-heading"><strong>{{vm.comments[$index + 1].title}}</strong></h4>
+                <div class="meal-date text-center"><strong>Meal date:</strong> <i>{{vm.comments[$index + 1].meal_date | date:'yyyy-MMM-dd'}}</i></div>
+                <p class="text-left remove-margin">{{vm.comments[$index + 1].content | limitTo : 300}}{{vm.comments[$index + 1].content.length > 300 ? '...' : ''}}</p>
+                <span class="text-muted pull-right"><small><em>{{vm.formatDate(vm.comments[$index + 1].created_at)}}</em></small></span>
+                <div class="unread-replies pull-left"><strong>Unread Replies:</strong> <span class="label label-warning">{{vm.comments[$index + 1].number_of_replies - vm.comments[$index + 1].number_of_have_read_replies}} / {{vm.comments[$index + 1].number_of_replies}}</span></div>
+            </div>
+            <div class="col-sm-4"  ng-if="$index + 2 < vm.comments.length">
+                <a href="#/comment/{{vm.comments[$index + 2].id}}" class="circle themed-background animation-fadeIn3600" data-toggle="animation-appear" data-animation-class="animation-fadeIn3600" data-element-offset="-100" >
+                    <i class="fa fa-comments-o"></i>
+                </a>
+                <h4 class="site-heading"><strong>{{vm.comments[$index + 2].title}}</strong></h4>
+                <div class="meal-date text-center"><strong>Meal date:</strong> <i>{{vm.formatDate(vm.comments[$index + 2].created_at)}}</i></div>
+                <p class="text-left remove-margin">{{vm.comments[$index + 2].content | limitTo : 300}}{{vm.comments[$index + 2].content.length > 300 ? '...' : ''}}</p>
+                <span class="text-muted pull-right"><small><em>{{vm.comments[$index + 2].created_at | date:'EEEE'}}</em></small></span>
+                <div class="unread-replies pull-left"><strong>Unread Replies:</strong> <span class="label label-warning">{{vm.comments[$index + 2].number_of_replies - vm.comments[$index + 2].number_of_have_read_replies}} / {{vm.comments[$index + 2].number_of_replies}}</span></div>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn btn-success" ng-show='vm.is_more_comments' ng-click='vm.loadComments(vm.date_get_more_comments)'>Load 10 days later ...</button>
+            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+    </div>
+    <div class="container" ng-show='!vm.isAllCommentsView'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                <h3 class="h2 site-heading"><strong>New Comment</strong></h3>
+                <form name="form_new_comment" ng-submit='vm.newComment()'>
+                    <div class="form-group" ng-class=" { 'has-error' : form_new_comment.title.$dirty && form_new_comment.title.$error.required }">
+                        <label for="password">Title</label>
+                        <input type="text" name="title" id="title" class="form-control" ng-model="vm.title" required />
+                        <span ng-show="form_new_comment.title.$dirty && form_new_comment.title.$error.required" class="help-block">Title is required</span>
+                    </div>
+                    <div class="form-group" ng-class=" { 'has-error' : form_new_comment.content.$dirty && form_new_comment.content.$error.required }">
+                        <label for="password">Content</label>
+                        <textarea id="content" name="content" ng-model="vm.content" rows="10" class="form-control input-lg" placeholder="Let us know how we can assist.." required></textarea>
+                        <span ng-show="form_new_comment.content.$dirty && form_new_comment.content.$error.required" class="help-block">Content is required</span>
+                    </div>
+                    <div class="form-group" ng-class=" { 'has-error' : (form_new_comment.mealDate.$dirty && form_new_comment.mealDate.$error.required) || form_new_comment.mealDate.$error.noMatch}">
+                        <label for="password">Meal day</label>
+                        <input type="date" name="mealDate" id="mealDate" class="form-control" ng-model="vm.mealDate" ng-change="vm.changeMealDate()" placeholder="yyyy-MM-dd" required />
+                        <span ng-show="form_new_comment.mealDate.$dirty && form_new_comment.mealDate.$error.required">Meal day is required</span>
+                    </div>
+                    <div class="form-group" ng-class=" { 'has-error' : (form_new_comment.dish.$dirty && form_new_comment.dish.$error.required) || form_new_comment.dish.$error.noMatch}">
+                        <label for="password">Dish</label>
+                            <select class="form-control" name="dishId" id="dishId" ng-model="vm.dishId" required>
+                                <option ng-repeat="dish in vm.dishes" value="{{dish.id}}">{{dish.name}}</option>
+                                <option ng-if="vm.dishes" value="0">Whole meal</option>
+                            </select>
+                        <span ng-show="form_new_comment.dish.$dirty && form_new_comment.dish.$error.required" class="help-block">Dish is required</span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" ng-disabled="form_new_comment.$invalid || vm.dataLoading" class="btn btn-lg btn-primary">Post</button>
+                        <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,47 @@
+<section class="site-section site-section-light site-section-top themed-background-dark">
+    <div class="container">
+        <h1 class="animation-slideDown">
+            <strong>Detail announcement</strong>
+            <a href="#/announcements" class="btn btn-primary" >All announcements</a>
+        </h1>
+    </div>
+</section>
+<section class="site-content site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 site-block">
+                <h3 class="site-heading"><strong>Replies</strong> Announcements</h3>
+                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                <ul class="media-list">
+                    <li class="media" ng-repeat="reply in vm.replies">
+                        <a href="javascript:void(0);" class="pull-left">
+                            <img src="{{reply.avatar_content_file}}" width="70" height="70" alt="Avatar" class="img-circle">
+                        </a>
+                        <div class="media-body">
+                            <span class="text-muted pull-right"><small><em>{{vm.formatDate(reply.created_at)}}</em></small></span>
+                            <a href="javascript:void(0)"><strong>{{reply.email}}</strong></a>
+                            <p>{{reply.content}}</p>
+                        </div>
+                    </li>
+                    <li class="media">
+                        <a href="javascript:void(0)" class="pull-left">
+                            <img src="{{vm.avatar_content_file}}" width="70" height="70" alt="Avatar" class="img-circle">
+                        </a>
+                        <div class="media-body">
+                            <form name="form_replyAnnouncement" ng-submit='vm.postReply()'>
+                                <div class="form-group" ng-class=" { 'has-error' : form_replyAnnouncement.content.$dirty && form_replyAnnouncement.content.$error.required }">
+                                    <textarea id="content" name="content" ng-model="vm.content" rows="4" class="form-control input-lg" placeholder="Enter your reply.." required></textarea>
+                                    <span ng-show="form_replyAnnouncement.content.$dirty && form_replyAnnouncement.content.$error.required" class="help-block">Content is required</span>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" ng-disabled="form_replyAnnouncement.$invalid || vm.dataLoading" class="btn btn-primary"><i class="fa fa-pencil"></i> Post</button>
+                                    <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,83 @@
+<section class="site-section site-section-light site-section-top themed-background-dark">
+    <div class="container">
+        <h1 class="text-center animation-slideDown"><i class="fa fa-trophy"></i> <strong>Favourite Dishes Screen</strong></h1>
+        <h2 class="h3 text-center animation-slideUp"><strong>Vote for dishes</strong></h2>
+    </div>
+</section>
+<section class="site-content site-section animation-slideDown">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10">
+                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+            </div>
+        </div>
+        <div class="row dishes-have-voted">
+            <h2 class="h3 text-center animation-slideUp"><strong>-- My dishes have voted --</strong></h2>
+            <div class="row portfolio">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" ng-repeat="(key, value) in vm.vote_dishes" id="{{value.id}}" ng-click="vm.removeVote(key)">
+                    <a href="javascript:void(0);">
+                        <img src="{{value.image}}" alt="Image" class="img-responsive">
+                        <span class="portfolio-item-info remove-vote"><strong>{{value.name}}</strong>
+                            <span class="delete-vote"><i class="fa fa-thumbs-o-down"></i> Remove</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row all-dishes">
+            <h2 class="h3 text-center animation-slideUp"><strong>-- All dishes --</strong></h2>
+            <div class="row portfolio" ng-if="$index % 6 == 0" ng-repeat="dish in vm.dishes">
+                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index].id}}" ng-click="vm.readyForVote(vm.dishes[$index])">
+                    <a href="javascript:void(0);">
+                        <img src="{{vm.dishes[$index].image}}" alt="Image" class="img-responsive">
+                        <span class="portfolio-item-info add-vote"><strong>{{vm.dishes[$index].name}}</strong>
+                            <span class="one-vote"><i class="fa fa-thumbs-o-up"></i> Vote</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 1].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 1])" ng-if="$index + 1 < vm.dishes.length">
+                    <a href="javascript:void(0);">
+                        <img src="{{vm.dishes[$index + 1].image}}" alt="Image" class="img-responsive">
+                        <span class="portfolio-item-info add-vote"><strong>{{vm.dishes[$index + 1].name}}</strong>
+                            <span class="one-vote"><i class="fa fa-thumbs-o-up"></i> Vote</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 2].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 2])" ng-if="$index + 2 < vm.dishes.length">
+                    <a href="javascript:void(0);">
+                        <img src="{{vm.dishes[$index + 2].image}}" alt="Image" class="img-responsive">
+                        <span class="portfolio-item-info add-vote"><strong>{{vm.dishes[$index + 2].name}}</strong>
+                            <span class="one-vote"><i class="fa fa-thumbs-o-up"></i> Vote</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 3].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 3])" ng-if="$index + 3 < vm.dishes.length">
+                    <a href="javascript:void(0);">
+                        <img src="{{vm.dishes[$index + 3].image}}" alt="Image" class="img-responsive">
+                        <span class="portfolio-item-info add-vote"><strong>{{vm.dishes[$index + 3].name}}</strong>
+                            <span class="one-vote"><i class="fa fa-thumbs-o-up"></i> Vote</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 4].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 4])" ng-if="$index + 4 < vm.dishes.length">
+                    <a href="javascript:void(0);">
+                        <img src="{{vm.dishes[$index + 4].image}}" alt="Image" class="img-responsive">
+                        <span class="portfolio-item-info add-vote"><strong>{{vm.dishes[$index + 4].name}}</strong>
+                            <span class="one-vote"><i class="fa fa-thumbs-o-up"></i> Vote</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 5].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 5])" ng-if="$index + 5 < vm.dishes.length">
+                    <a href="javascript:void(0);">
+                        <img src="{{vm.dishes[$index + 5].image}}" alt="Image" class="img-responsive">
+                        <span class="portfolio-item-info add-vote"><strong>{{vm.dishes[$index + 5].name}}</strong>
+                            <span class="one-vote"><i class="fa fa-thumbs-o-up"></i> Vote</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<a href="javascript:void(0);" id="btn-vote" data-toggle="tooltip" data-placement="bottom" title="Vote!" ng-click="vm.voteForDishes()"><i class="fa fa-thumbs-o-up"></i> Vote</a>
