@@ -5,8 +5,8 @@
         .module('app')
         .factory('UserService', UserService);
 
-    UserService.$inject = ['$http', 'AuthenticationService'];
-    function UserService($http, AuthenticationService) {
+    UserService.$inject = ['$http'];
+    function UserService($http) {
         var service = {};
         var base_url = 'http://113.160.225.76:8989/elunch/';
         service.Login = Login;
