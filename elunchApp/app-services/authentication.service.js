@@ -81,7 +81,6 @@
         function expiredSession() {
             $location.path('/login');
             FlashService.Error('Your session expired.Please re-login');
-            return;
         }
     }
 
