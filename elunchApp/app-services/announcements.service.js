@@ -8,7 +8,7 @@
     AnnouncementsService.$inject = ['$http'];
     function AnnouncementsService($http) {
         var service = {};
-        var base_url = 'http://localhost/WebPortal/Development/source/eLunch/';
+        var base_url = 'http://113.160.225.76:8989/elunch/';
         var days = 60;
         service.getAnnouncements = getAnnouncements;
         service.postReply = postReply;
