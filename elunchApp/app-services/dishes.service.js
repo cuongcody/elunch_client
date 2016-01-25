@@ -42,7 +42,7 @@
         function handleError(error) {
             return function () {
                 AuthenticationService.expiredSession();
-                return { status: 'false', message: error };
+                return { status: 'false'};
             };
         }
     }
