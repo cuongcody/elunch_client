@@ -20,7 +20,7 @@
         }
 
         function GetVoteForDishes(user_id) {
-            return $http.get(base_url + 'user/'+ user_id + '/vote_dishes').then(handleSuccess, handleError;
+            return $http.get(base_url + 'user/'+ user_id + '/vote_dishes').then(handleSuccess, handleError);
         }
 
         function voteForDishes(data) {
