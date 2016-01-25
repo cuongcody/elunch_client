@@ -29,7 +29,6 @@
             current_date = $filter('date')(new Date(), 'yyyy-MM-dd');
             console.log(current_date);
             if ($rootScope.location.path() != "/announcements") {
-                console.log($rootScope.location);
                 getDetailAnnouncement($routeParams.id);
             }
             else {
