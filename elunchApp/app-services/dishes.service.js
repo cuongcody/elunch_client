@@ -41,6 +41,7 @@
 
         function handleError(error) {
             return function () {
+                { status: 'false', message: error };
                 AuthenticationService.expiredSession();
             };
         }
