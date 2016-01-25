@@ -46,13 +46,6 @@
                     });
             }, 1000);
 
-            /* Use this for real authentication
-             ----------------------------------------------*/
-            //$http.post('/api/authenticate', { username: username, password: password })
-            //    .success(function (response) {
-            //        callback(response);
-            //    });
-
         }
 
         function SetCredentials(user) {
@@ -87,7 +80,8 @@
 
         function expiredSession() {
             $location.path('/login');
-            FlashService.Error('Re-login');
+            FlashService.Error('Your session expired.Please re-login');
+            return;
         }
     }
 

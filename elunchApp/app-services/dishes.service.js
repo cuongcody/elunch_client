@@ -40,10 +40,7 @@
         }
 
         function handleError(error) {
-            return function () {
-                AuthenticationService.expiredSession();
-                return { status: 'false'};
-            };
+            AuthenticationService.expiredSession();
         }
     }
 
