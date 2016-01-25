@@ -13,6 +13,7 @@
         service.SetCredentials = SetCredentials;
         service.updateCredentials = updateCredentials;
         service.ClearCredentials = ClearCredentials;
+        service.expiredSession = expiredSession;
 
         return service;
 
