@@ -5,8 +5,8 @@
         .module('app')
         .factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService'];
-    function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService) {
+    AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService', 'FlashService', '$location'];
+    function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService, FlashService, $location) {
         var service = {};
 
         service.Login = Login;
@@ -82,6 +82,11 @@
             $rootScope.globals = {};
             $cookieStore.remove('globals');
             $http.defaults.headers.common.Authorization = 'Bearer';
+        }
+
+        function expiredSession() {
+            $location.path('/login');
+            FlashService.Error('Re-login');
         }
     }
 
