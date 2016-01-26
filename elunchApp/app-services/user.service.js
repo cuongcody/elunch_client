@@ -5,8 +5,8 @@
         .module('app')
         .factory('UserService', UserService);
 
-    UserService.$inject = ['$http'];
-    function UserService($http) {
+    UserService.$inject = ['$http', 'SessionService'];
+    function UserService($http, SessionService) {
         var service = {};
         var base_url = 'http://113.160.225.76:8989/elunch/';
         service.Login = Login;
@@ -61,7 +61,7 @@
         }
 
         function handleError(res) {
-            AuthenticationService.expiredSession(res);
+            SessionService.expiredSession(res);
         }
     }
 

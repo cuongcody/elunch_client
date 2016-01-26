@@ -5,8 +5,8 @@
         .module('app')
         .factory('TablesService', TablesService);
 
-    TablesService.$inject = ['$http', 'AuthenticationService'];
-    function TablesService($http, AuthenticationService) {
+    TablesService.$inject = ['$http', 'SessionService'];
+    function TablesService($http, SessionService) {
         var service = {};
         var base_url = 'http://113.160.225.76:8989/elunch/';
 
@@ -40,7 +40,7 @@
         }
 
         function handleError(res) {
-            AuthenticationService.expiredSession(res);
+            SessionService.expiredSession(res);
         }
     }
 

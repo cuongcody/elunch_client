@@ -5,8 +5,8 @@
         .module('app')
         .factory('DishesService', DishesService);
 
-    DishesService.$inject = ['$http', 'AuthenticationService'];
-    function DishesService($http, AuthenticationService) {
+    DishesService.$inject = ['$http', 'SessionService'];
+    function DishesService($http, SessionService) {
         var service = {};
         var base_url = 'http://113.160.225.76:8989/elunch/';
 
@@ -40,7 +40,7 @@
         }
 
         function handleError(res) {
-            AuthenticationService.expiredSession(res);
+            SessionService.expiredSession(res);
         }
     }
 

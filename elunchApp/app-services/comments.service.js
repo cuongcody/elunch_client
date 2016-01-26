@@ -5,8 +5,8 @@
         .module('app')
         .factory('CommentsService', CommentsService);
 
-    CommentsService.$inject = ['$http', 'AuthenticationService'];
-    function CommentsService($http, AuthenticationService) {
+    CommentsService.$inject = ['$http', 'SessionService'];
+    function CommentsService($http, SessionService) {
         var service = {};
         var base_url = 'http://113.160.225.76:8989/elunch/';
         var days = 60;
@@ -63,7 +63,7 @@
         }
 
         function handleError(res) {
-            AuthenticationService.expiredSession(res);
+            SessionService.expiredSession(res);
         }
     }
 
