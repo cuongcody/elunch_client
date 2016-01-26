@@ -63,11 +63,11 @@
                         vm.haveReadRepliesAnnouncement = res.data.have_read_replies_announcement;
                         readAnnouncement();
                     }
-                    else FlashService.Error("This announcement don't have any replies");
+                    else FlashService.Error("This announcement doesn't have any replies");
                 }
                 else {
                     vm.replies = [];
-                    FlashService.Error("This announcement don't have any replies");
+                    FlashService.Error("This announcement doesn't have any replies");
                 }
 
             })

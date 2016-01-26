@@ -85,11 +85,11 @@
                         vm.haveReadRepliesComment = res.data.have_read_replies_comment;
                         readReplies();
                     }
-                    else FlashService.Error("This comment don't have any replies");
+                    else FlashService.Error("This comment doesn't have any replies");
                 }
                 else {
                     vm.replies = [];
-                    FlashService.Error("This comment don't have any replies");
+                    FlashService.Error("This comment doesn't have any replies");
                 }
 
             })
