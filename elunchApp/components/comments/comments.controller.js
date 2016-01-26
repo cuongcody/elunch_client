@@ -31,7 +31,6 @@
             vm.avatar_content_file = $rootScope.globals.currentUser.avatar_content_file;
             current_date = $filter('date')(new Date(), 'yyyy-MM-dd');
             console.log(current_date);
-            loadComments(current_date);
             if ($rootScope.location.path() != "/comments") {
                 getDetailComment($routeParams.id);
             }
