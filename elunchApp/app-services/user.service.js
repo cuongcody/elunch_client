@@ -14,6 +14,9 @@
         service.GetById = GetById;
         service.Update = Update;
         service.changePasswordOfUserById = changePasswordOfUserById;
+        service.getPreferences = getPreferences;
+        service.getPreferencesOfUser = getPreferencesOfUser;
+        service.postPreferences = postPreferences;
 
         return service;
 
@@ -51,6 +54,23 @@
                   data : data['params'],
                   headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
             }).then( handleSuccess, handleError);
+        }
+
+        function getPreferences() {
+            return $http.get(base_url + 'preferences').then(handleSuccess, handleError);
+        }
+
+        function getPreferencesOfUser(user_id) {
+            return $http.get(base_url + 'user/' + user_id + '/preferences').then(handleSuccess, handleError);
+        }
+
+        function postPreferences(data) {
+            return $http({
+                  method: 'POST',
+                  url: base_url + 'preferences/',
+                  data : data['params'],
+                  headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
+            }).then( handleSuccess, handleError('Error updating password of user'));
         }
 
         // private functions
