@@ -17,7 +17,7 @@
                 <div ng-show='vm.isPreferencesView'>
                     <div class='row'>
                         <div class='col-xs-12'>
-                            <form name="form_preferences" ng-submit='vm.updateUser()'>
+                            <form class="form-preferences" name="form_preferences" ng-submit='vm.updateUser()'>
                                 <h2 class="site-heading"><strong>Preferences</strong></h2>
                                 <!-- <div class="form-group" ng-class=" { 'has-error' : form_preferences.whatTaste.$dirty && form_preferences.whatTaste.$error.required }">
                                     <textarea id="whatTaste" name="whatTaste" ng-model="vm.whatTaste" rows="10" class="form-control input-lg" placeholder="Let us know how we can assist.." required></textarea>
@@ -25,27 +25,23 @@
                                 </div> -->
                                 <div class='form-group'>
                                     <div class='row'>
-                                        <div class="container">
-                                            <h3 class="">Eat</h3>
-                                            <div class="col-xs-12 col-sm-2">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" ng-model="vm.isVegan" > Vegan
-                                                    </label>
-                                                </div>
+                                        <h3 class="">Eat</h3>
+                                        <div class="col-xs-12 col-sm-2">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" ng-model="vm.isVegan" > Vegan
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class='row' ng-repeat='preferences_categories_item in vm.preferences'>
-                                        <div class="container">
-                                            <h3 class="">{{preferences_categories_item[0].preferences_categories_name}}</h3>
-                                            <div class='col-xs-12 col-sm-2' ng-repeat='preferences_item in preferences_categories_item'>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" ng-model="preferences_item.selected" value="{{preferences_item.id}}">
-                                                        {{preferences_item.name}}
-                                                    </label>
-                                                </div>
+                                        <h3 class="">{{preferences_categories_item[0].preferences_categories_name}}</h3>
+                                        <div class='col-xs-12 col-sm-2' ng-repeat='preferences_item in preferences_categories_item'>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" ng-model="preferences_item.selected" value="{{preferences_item.id}}">
+                                                    {{preferences_item.name}}
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
