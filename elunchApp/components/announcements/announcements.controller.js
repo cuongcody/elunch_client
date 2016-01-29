@@ -27,7 +27,6 @@
             user_id = $rootScope.globals.currentUser.id;
             vm.avatar_content_file = $rootScope.globals.currentUser.avatar_content_file;
             current_date = $filter('date')(new Date(), 'yyyy-MM-dd');
-            console.log(current_date);
             if ($rootScope.location.path() != "/announcements") {
                 getDetailAnnouncement($routeParams.id);
             }
@@ -42,7 +41,6 @@
                 .then(function (res) {
                     vm.dataLoading = false;
                     FlashService.clearFlashMessage();
-                    console.log(res);
                     if (res.status == 'success') {
                         vm.announcements.push.apply(vm.announcements, res.data.messages);
                         vm.is_more_announcements = res.data.is_more_announcements;
@@ -56,7 +54,6 @@
 
         function getDetailAnnouncement(announcement_id) {
             AnnouncementsService.getRepliesOfAnnouncement(user_id, announcement_id).then(function (res) {
-                console.log(res);
                 if (res.status == 'success') {
                     if (res.data.replies.length > 0) {
                         vm.replies = res.data.replies;
@@ -79,7 +76,6 @@
             var data = 'user_id=' + user_id + '&announcement_id=' + announcement_id + "&content=" + vm.content;
             AnnouncementsService.postReply(data).then(function (res) {
                 vm.dataLoading = false;
-                console.log(res);
                 if (res.status == 'success') {
                     res.data.email = $rootScope.globals.currentUser.email;
                     res.data.avatar_content_file = vm.avatar_content_file;
@@ -95,14 +91,12 @@
         function readReplies() {
             var haveReadRepliesAnnouncementArr = vm.haveReadRepliesAnnouncement.split(";");
             var NoReadRepliesAnnouncement = "";
-            console.log(haveReadRepliesAnnouncementArr);
             angular.forEach(vm.replies, function (value, key) {
                 if (haveReadRepliesAnnouncementArr.indexOf(value.id.toString()) == -1) {
                     NoReadRepliesAnnouncement += value.id + ";";
                 }
             })
             NoReadRepliesAnnouncement = NoReadRepliesAnnouncement.substr(0, NoReadRepliesAnnouncement.length - 1);
-            console.log(NoReadRepliesAnnouncement);
             if (NoReadRepliesAnnouncement != "") {
                 var announcement_id = $routeParams.id;
                 var data = 'user_id=' + user_id + '&announcement_id=' + announcement_id + '&reply_ids=' + NoReadRepliesAnnouncement;
@@ -113,7 +107,6 @@
                     else {
 
                     }
-                    console.log(res.message);
                 })
             }
         }
@@ -123,7 +116,6 @@
             var data = 'user_id=' + user_id + '&announcement_id=' + announcement_id;
             AnnouncementsService.haveReadAnnouncement(data).then(function (res) {
                 if (res.status = 'success') readReplies();
-                console.log(res.message);
             })
         }
 

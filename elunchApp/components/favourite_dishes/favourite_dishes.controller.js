@@ -25,7 +25,6 @@
 
         function getDishes() {
             DishesService.GetDishes().then(function (res) {
-                console.log(res);
                 if (res.status == 'success') {
                     vm.dishes = res.data;
                 }
@@ -38,7 +37,6 @@
 
         function getVoteForDish() {
              DishesService.GetVoteForDishes(user_id).then(function (res) {
-                console.log(res);
                 if (res.status == 'success') {
                     vm.vote_dishes = res.data;
                 }
@@ -55,7 +53,6 @@
             if (dishes_id != ""){
                 data = 'user_id=' + user_id + "&dishes_id=" + dishes_id;
                 DishesService.voteForDishes(data).then(function (res) {
-                    console.log(res);
                     if (res.status == 'success') {
                         FlashService.Success(res.message);
                     }
@@ -76,11 +73,9 @@
                 var isDishesHaveVoted = false;
                 angular.forEach(vm.vote_dishes, function(value, key){
                     if(value.id == dish.id) {
-                        console.log('asdsad');
                         isDishesHaveVoted = true;
                     }
                 });
-                console.log(isDishesHaveVoted);
                 if (isDishesHaveVoted == false) vm.vote_dishes.push(dish);
             }
             else

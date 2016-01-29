@@ -23,7 +23,6 @@
         function loadCurrentUser() {
             UserService.GetById($rootScope.globals.currentUser.id)
                 .then(function (res) {
-                    console.log(res.data);
                     vm.user = res.data;
                 });
         }

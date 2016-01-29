@@ -30,7 +30,6 @@
             user_id = $rootScope.globals.currentUser.id;
             vm.avatar_content_file = $rootScope.globals.currentUser.avatar_content_file;
             current_date = $filter('date')(new Date(), 'yyyy-MM-dd');
-            console.log(current_date);
             if ($rootScope.location.path() != "/comments") {
                 getDetailComment($routeParams.id);
             }
@@ -44,7 +43,6 @@
             CommentsService.getComments(user_id, date)
                 .then(function (res) {
                     vm.dataLoading = false;
-                    console.log(res);
                     if (res.status == 'success') {
                         vm.comments.push.apply(vm.comments, res.data.comments);
                         vm.is_more_comments = res.data.is_more_comments;
@@ -63,7 +61,6 @@
             CommentsService.postComment(data)
                 .then(function (res) {
                     vm.dataLoading = false;
-                    console.log(res);
                     if (res.status == 'success') {
                         res.data.number_of_replies = 0;
                         vm.comments.splice(0, 0, res.data);
@@ -78,7 +75,6 @@
 
         function getDetailComment(comment_id) {
             CommentsService.getRepliesOfComment(user_id, comment_id).then(function (res) {
-                console.log(res);
                 if (res.status == 'success') {
                     if (res.data.replies.length > 0) {
                         vm.replies = res.data.replies;
@@ -101,7 +97,6 @@
             var data = 'user_id=' + user_id + '&comment_id=' + comment_id + "&content=" + vm.content;
             CommentsService.postReply(data).then(function (res) {
                 vm.dataLoading = false;
-                console.log(res);
                 if (res.status == 'success') {
                     res.data.email = $rootScope.globals.currentUser.email;
                     res.data.avatar_content_file = vm.avatar_content_file;
@@ -117,21 +112,18 @@
         function changeMealDate() {
             var date = $filter('date')(new Date(vm.mealDate), 'yyyy-MM-dd');
             vm.dishes = MenuService.GetMealsByDate(date).then(function (res) {
-                console.log(res);
                 if (res.status == 'success') {
                     vm.dishes = res.data[date];
                 }
                 else {
                     vm.dishes = [];
                 }
-                console.log(vm.dishes);
             })
         }
 
         function readReplies() {
             var haveReadRepliesCommentArr = vm.haveReadRepliesComment.split(";");
             var NoReadRepliesComment = "";
-            console.log(haveReadRepliesCommentArr);
             angular.forEach(vm.replies, function (value, key) {
 
                 if (haveReadRepliesCommentArr.indexOf(value.id.toString()) == -1) {
@@ -139,7 +131,6 @@
                 }
             })
             NoReadRepliesComment = NoReadRepliesComment.substr(0, NoReadRepliesComment.length - 1);
-            console.log(NoReadRepliesComment);
             if (NoReadRepliesComment != "") {
                 var comment_id = $routeParams.id;
                 var data = 'user_id=' + user_id + '&comment_id=' + comment_id + '&reply_ids=' + NoReadRepliesComment;
@@ -150,7 +141,6 @@
                     else {
 
                     }
-                    console.log(res.message);
                 })
             }
         }

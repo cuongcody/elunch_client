@@ -19,11 +19,11 @@
         function login() {
             vm.dataLoading = true;
             AuthenticationService.Login(vm.email, vm.password, function (response) {
+                vm.dataLoading = false;
                 if (response.success) {
                     $location.path('/');
                 } else {
                     FlashService.Error(response.message);
-                    vm.dataLoading = false;
                 }
             });
         };

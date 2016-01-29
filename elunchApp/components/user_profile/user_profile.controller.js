@@ -45,7 +45,6 @@
         function loadCurrentUser() {
             UserService.GetById(user_id)
                 .then(function (res) {
-                    console.log(res.data);
                     vm.user = res.data;
                     vm.whatTaste = vm.user.what_taste;
                     vm.isVegan = vm.user.want_vegan_meal;
@@ -55,7 +54,6 @@
         function getPreferences() {
             UserService.getPreferences()
                 .then(function (res) {
-                    console.log(res.data);
                     vm.preferences = res.data;
                     getPreferencesOfUser();
                 });
@@ -104,7 +102,6 @@
                         data2['params'] = 'preferences_ids=' + selectedPreferences + '&user_id=' + user_id;
                         UserService.postPreferences(data2)
                             .then(function (res) {
-                                console.log(res);
                                 vm.dataLoading = false;
                                 if (res.status == 'success')
                                 {
@@ -133,7 +130,6 @@
                              '&confirm_new_password=' + vm.confirmNewPassword;
             UserService.changePasswordOfUserById(data)
             .then(function (res) {
-                console.log(res);
                 vm.dataLoading = false;
                 if (res.status == 'success') {
                     $rootScope.globals.currentUser.authentication_token = res.data.authentication_token;

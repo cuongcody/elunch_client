@@ -12,7 +12,6 @@
         function initMenuController()
         {
             MenuService.GetMeals().then(function (res) {
-                console.log(res);
                 if (res.status == 'success') {
                     vm.meals = res.data;
                 }

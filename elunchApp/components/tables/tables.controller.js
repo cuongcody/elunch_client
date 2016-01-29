@@ -25,14 +25,12 @@
 
         function getTables(shift_id, for_vegan) {
             TablesService.getTablesByShift(shift_id, for_vegan).then(function (res) {
-                console.log(res);
                 if (res.status == 'success') {
                     vm.tables = res.data;
                     angular.forEach(vm.tables, function (value1, key1) {
                         angular.forEach(value1.users, function (value2, key2) {
                             if (value2.id == vm.user_id) {
                                 vm.table_joined = value1;
-                                console.log(vm.table_joined);
                             }
                         })
                     })
@@ -78,7 +76,6 @@
             FlashService.clearFlashMessage();
             var data = 'user_id=' + vm.user_id + '&table_id=' + table_id;
             TablesService.joinTable(data).then(function (res) {
-                console.log(res);
                 if (res.status == 'success') {
                    vm.table_joined = vm.table_clicked;
                    var user = {};
@@ -97,7 +94,6 @@
         function leaveTable(table_id) {
             FlashService.clearFlashMessage();
             TablesService.leaveTable(vm.user_id, table_id).then(function (res) {
-                console.log(res);
                 if (res.status == 'success') {
                     removeUserFromTable(vm.user_id, vm.users);
                     updateSeatOnTable(1);
