@@ -3,7 +3,30 @@
 
     angular
         .module('app')
-        .controller('UserController', UserController)
+        .directive('slider', function ($timeout, $animate) {
+              return {
+                link: function(scope, elem, attrs) {
+                    scope.next = function(preferences_categories_item){
+                        var element = preferences_categories_item.pop();
+                        preferences_categories_item.unshift(element);
+                    };
+
+                    scope.prev = function(preferences_categories_item){
+                        var element = preferences_categories_item.shift();
+                        preferences_categories_item.push(element);
+                    };
+
+                    scope.$watch('preferences_categories_item',function(){
+                        angular.forEach(scope.vm.preferences, function(value1, index1) {
+                            angular.forEach(value1, function(value2, index2) {
+                            if (index2 < 6) value2.invisible = true;
+                            else value2.invisible = false;
+                            })
+                        })
+                    }, true);
+                }
+            }
+        })
         .directive('pwCheck', function () {
             return {
                 require: 'ngModel',
@@ -17,7 +40,8 @@
                     });
                   }
             }
-        });
+        })
+        .controller('UserController', UserController);
 
     UserController.$inject = ['UserService', '$rootScope', 'FlashService', 'AuthenticationService', '$http', '$cookieStore'];
     function UserController(UserService, $rootScope, FlashService, AuthenticationService, $http, $cookieStore) {
@@ -33,7 +57,6 @@
         vm.getPreferences = getPreferences;
         vm.getPreferencesOfUser = getPreferencesOfUser;
         initController();
-
         function initController() {
             user_id = $rootScope.globals.currentUser.id;
             loadCurrentUser();
