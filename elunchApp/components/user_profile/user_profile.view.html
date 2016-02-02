@@ -37,12 +37,25 @@
                                     <div class='row' ng-repeat='preferences_categories_item in vm.preferences'>
                                         <h3 class="">{{preferences_categories_item[0].preferences_categories_name}}</h3>
                                         <div class="col-xs-12 slider" slider="{{preferences_categories_item}}">
-                                            <ul class='list-slider'>
-                                                <li class="slide" ng-repeat='preferences_item in preferences_categories_item' ng-show="preferences_item.invisible" ng-click="preferences_item.selected = !preferences_item.selected">
-                                                    <img width="100" height="100" ng-src="{{preferences_item.image}}" />
-                                                    <div class='text-center preferences-item-name' ng-class="{'preferences-item-selected' : preferences_item.selected}">{{preferences_item.name}}</div>
-                                                </li>
-                                            </ul>
+                                            <div>
+                                                <h4 class='preferences-header text-center'><span>All</span></h4>
+                                                <ul class='list-slider'>
+                                                    <li class="slide" ng-repeat='preferences_item in preferences_categories_item' ng-show="preferences_item.invisible" ng-click="preferences_item.selected = !preferences_item.selected">
+                                                        <img width="100" height="100" ng-src="{{preferences_item.image}}" />
+                                                        <div class='text-center preferences-item-name'>{{preferences_item.name}}</div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div>
+                                                <h4 class='preferences-header text-center'><span>Your</span></h4>
+                                                <ul class='list-slider'>
+                                                    <li class="slide" ng-repeat='preferences_item in preferences_categories_item' ng-show="preferences_item.selected" ng-click="preferences_item.selected = !preferences_item.selected">
+                                                        <img width="100" height="100" ng-src="{{preferences_item.image}}" />
+                                                        <div class='text-center preferences-item-name' ng-class="{'preferences-item-selected' : preferences_item.selected}">{{preferences_item.name}}</div>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                             <div class="arrows">
                                                 <a href="javascript:void(0)" ng-click="prev(preferences_categories_item)">
                                                     <img src="assets/img/left-arrow.png" />
