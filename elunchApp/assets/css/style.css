@@ -185,22 +185,42 @@
     text-decoration: underline;
 }
 .menus #site-user-profile {
-    background : url('../img/placeholders/menu/bg_user_profile.png');
+    background : url('../img/placeholders/menu/bg_user_profile.png') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 .menus #site-menu {
-    background : url('../img/placeholders/menu/bg_view_menu.png');
+    background : url('../img/placeholders/menu/bg_view_menu.png') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .menus #site-comments {
-    background : url('../img/placeholders/menu/bg_comments.png');
+    background : url('../img/placeholders/menu/bg_comments.png') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .menus #site-announcements {
-    background : url('../img/placeholders/menu/bg_announcements.png');
+    background : url('../img/placeholders/menu/bg_announcements.png') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .menus #site-favourite-dishes {
-    background : url('../img/placeholders/menu/bg_favorite_dishes.png');
+    background : url('../img/placeholders/menu/bg_favorite_dishes.png') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 .menus .site-heading {
     background: black;
