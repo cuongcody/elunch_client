@@ -3,6 +3,8 @@
 
     angular
         .module('app', ['ngRoute', 'ngCookies', 'ngAnimate', 'angular.backtop'])
+        .config(config)
+        .run(run)
         .directive('handleMenu', function () {
             return {
                 link: function (scope, elem, attrs) {
@@ -22,8 +24,29 @@
                   }
             }
         })
-        .config(config)
-        .run(run);
+        .directive('fixBottom', function ($timeout) {
+            return {
+                link: function (scope, elem, attrs) {
+                    scope.$watch(
+                        function () {
+                            return {
+                               heightPage: $("#page-container").height(),
+                               heightScreen: $(window).height(),
+                            }
+                       },
+                       function () {
+                            $timeout(function () {
+                            var heightPage = $("#page-container").height();
+                            var heightScreen = $(window).height();
+                            if (heightPage < heightScreen) {
+                                $("footer").addClass('navbar-fixed-bottom');
+                            }
+                            else $("footer").removeClass('navbar-fixed-bottom');
+                        });
+                       }, true);
+                  }
+            }
+        });
 
     config.$inject = ['$routeProvider', '$locationProvider'];
     function config($routeProvider, $locationProvider) {
@@ -95,6 +118,7 @@
             })
 
             .otherwise({ redirectTo: '/login' });
+            $locationProvider.html5Mode(true);
     }
 
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];

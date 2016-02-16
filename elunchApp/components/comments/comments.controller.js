@@ -27,6 +27,7 @@
         initController();
 
         function initController() {
+            $rootScope.title = 'Comments';
             user_id = $rootScope.globals.currentUser.id;
             vm.avatar_content_file = $rootScope.globals.currentUser.avatar_content_file;
             current_date = $filter('date')(new Date(), 'yyyy-MM-dd');

@@ -11,6 +11,7 @@
         initMenuController();
         function initMenuController()
         {
+            $rootScope.title = 'Menu';
             MenuService.GetMeals().then(function (res) {
                 if (res.status == 'success') {
                     vm.meals = res.data;

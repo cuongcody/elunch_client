@@ -16,6 +16,7 @@
         initController();
 
         function initController() {
+            $rootScope.title = 'Home';
             loadCurrentUser();
             //loadAllUsers();
         }

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
+    <base href="http://113.160.225.76:8989/elunch_client/elunchApp/">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
-    <title>Elunch</title>
+    <title>{{title}}</title>
 
     <!-- Bootstrap is included in its original form, unaltered -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -27,10 +28,12 @@
     <script src="assets/js/vendor/modernizr-2.7.1-respond-1.4.2.min.js"></script>
 </head>
 <body>
-    <div id="page-container">
-        <div ng-show="location.path() != '/login'" ng-include="'shared/header/header.view.html'"></div>
-        <div class="mainview-animation" ng-view></div>
-        <div ng-show="location.path() != '/login'" ng-include="'shared/footer/footer.view.html'"></div>
+    <div id="page-container" fix-bottom>
+        <div id="wrap">
+            <div ng-show="location.path() != '/login'" ng-include="'shared/header/header.view.html'"></div>
+            <div class="mainview-animation" ng-view></div>
+        </div>
+        <div class="footer" ng-show="location.path() != '/login'" ng-include="'shared/footer/footer.view.html'"></div>
     </div>
 
 

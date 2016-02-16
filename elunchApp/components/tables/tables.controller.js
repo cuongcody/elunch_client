@@ -17,6 +17,7 @@
         vm.joinTable = joinTable;
         vm.selectedTab = selectedTab;
         function initTablesController() {
+            $rootScope.title = 'Tables';
             vm.user_id = $rootScope.globals.currentUser.id;
             vm.want_vegan_meal = $rootScope.globals.currentUser.want_vegan_meal;
             shift_id = $rootScope.globals.currentUser.shift_id;

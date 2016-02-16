@@ -18,6 +18,7 @@
 
         function initFavouriteDishesController()
         {
+            $rootScope.title = 'Favourite Dishes';
             user_id = $rootScope.globals.currentUser.id;
             getDishes();
             getVoteForDish();

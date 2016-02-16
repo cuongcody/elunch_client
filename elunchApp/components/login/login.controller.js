@@ -12,6 +12,7 @@
         vm.login = login;
 
         (function initController() {
+            $rootScope.title = 'Login';
             // reset login status
             AuthenticationService.ClearCredentials();
         })();

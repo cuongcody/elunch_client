@@ -58,6 +58,7 @@
         vm.getPreferencesOfUser = getPreferencesOfUser;
         initController();
         function initController() {
+            $rootScope.title = 'Users Profile';
             user_id = $rootScope.globals.currentUser.id;
             loadCurrentUser();
             if (vm.isPreferencesView) {
