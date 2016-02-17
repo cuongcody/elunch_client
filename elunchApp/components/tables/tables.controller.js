@@ -10,7 +10,7 @@
                             $timeout(function(){
                                 var elem = $('.detail-table');
                                 $('.table-active').parent().append(elem);
-                                $(ele).addClass('ng-hide-remove');
+                                $(elem).addClass('ng-hide-remove');
                             });
                         }, true);
                     }
