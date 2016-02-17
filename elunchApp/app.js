@@ -30,13 +30,13 @@
                     scope.$watch(
                         function () {
                             return {
-                               heightPage: $("#page-container").height(),
+                               heightPage: $("#page-container").height()  + $('footer').height(),
                                heightScreen: $(window).height(),
                             }
                        },
                        function () {
                             $timeout(function () {
-                            var heightPage = $("#page-container").height();
+                            var heightPage = $("#page-container").height() + $('footer').height();
                             var heightScreen = $(window).height();
                             if (heightPage < heightScreen) {
                                 $("footer").addClass('navbar-fixed-bottom');

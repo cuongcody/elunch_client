@@ -2,6 +2,21 @@
     'use strict';
     angular
         .module('app')
+        .directive('detailTable', function($timeout){
+            return {
+                link: function(scope, elements, attrs) {
+                    if ($(window).width() < 767) {
+                        scope.$watch('vm.table_clicked', function() {
+                            $timeout(function(){
+                                var elem = $('.detail-table');
+                                $('.table-active').parent().append(elem);
+                                $(ele).addClass('ng-hide-remove');
+                            });
+                        }, true);
+                    }
+                }
+            };
+        })
         .controller('TablesController', TablesController);
     TablesController.$inject = ['TablesService', '$rootScope', 'FlashService'];
     function TablesController(TablesService, $rootScope, FlashService) {

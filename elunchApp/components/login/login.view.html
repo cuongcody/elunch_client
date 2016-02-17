@@ -1,6 +1,9 @@
-﻿<div class="col-md-8 col-md-offset-2">
+﻿<div class="col-xs-12 site-login">
     <div class='login'>
-        <h2>Login</h2>
+        <h2 class="site-heading text-center">
+            <div class="logo-login"></div>
+            Login
+        </h2>
         <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
         <form name="form" ng-submit="vm.login()" role="form">
             <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$invalid }">

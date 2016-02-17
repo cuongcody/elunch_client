@@ -113,9 +113,10 @@
 
 .site-logo {
   background : url('../img/favicon.ico');
-  background-size: 30px 30px;
+  background-size: 40px 40px;
   background-position: left;
   background-repeat: no-repeat;
+  padding-left: 10px;
 }
 .site-logo strong {
   padding-left: 30px;
@@ -128,13 +129,22 @@
   color: white;
   text-align: center;
 }
-
-.login, .register {
-    margin-top: 100px;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
+.site-login {
+    height: 100%;
 }
+.login {
+    margin: 0 auto;
+    padding: 20px;
+    width: 450px;
+}
+.login .logo-login {
+    text-align: center;
+    background : url('../img/favicon.ico') no-repeat;
+    background-size: 100px 100px;
+    background-position: bottom;
+    height: 100px;
+}
+
 .menus {
     padding: 0px;
     margin-bottom: -40px;
