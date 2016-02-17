@@ -31,7 +31,7 @@
             </div>
             <div class='col-xs-12 col-sm-6 detail-table'>
                 <div class="row">
-                    <div class="col-sm-offset-3 col-sm-6 btn-choose-table" ng-show="vm.table_clicked">
+                    <div class="col-sm-offset-3 col-sm-6" ng-show="vm.table_clicked" ng-class="{'btn-choose-table' : vm.table_clicked}">
                         <div class="col-xs-12"><button class="btn btn-success btn-block" ng-show="!vm.table_joined" ng-click="vm.joinTable(vm.table_clicked.id)">Join</button></div>
                         <div class="col-xs-12"><button class="btn btn-danger btn-block" ng-show="vm.table_joined == vm.table_clicked" ng-click="vm.leaveTable(vm.table_clicked.id)">Leave</button></div>
                     </div>
