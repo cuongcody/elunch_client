@@ -14,8 +14,7 @@
         <div class="row dishes-have-voted">
             <h2 class="h3 text-center animation-slideUp"><strong>-- My dishes have voted --</strong></h2>
             <div class="row portfolio">
-                <div class="col-xs-1"></div>
-                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" ng-repeat="(key, value) in vm.vote_dishes" id="{{value.id}}" ng-click="vm.removeVote(key)">
+                <div class="col-xs-3 col-sm-offset-1 col-sm-2 portfolio-item animation-fadeInQuick dish" ng-repeat="(key, value) in vm.vote_dishes" id="{{value.id}}" ng-click="vm.removeVote(key)">
                     <a href="javascript:void(0);">
                         <img src="{{value.image}}" alt="Image" class="img-responsive">
                         <span class="portfolio-item-info remove-vote"><strong>{{value.name}}</strong>
