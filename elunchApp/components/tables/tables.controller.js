@@ -5,10 +5,11 @@
         .directive('detailTable', function($timeout){
             return {
                 link: function(scope, elements, attrs) {
-                    if ($(window).width() < 767) {
+                    if ($(window).width() < 784) {
+                        var detailTable = $('.detail-table');
                         scope.$watch('vm.table_clicked', function() {
                             $timeout(function(){
-                                var elem = $('.detail-table');
+                                var elem = detailTable;
                                 $('.table-active').parent().append(elem);
                                 $(elem).addClass('animation-fadeIn');
                             });
@@ -76,6 +77,8 @@
         function clearData() {
             vm.table_joined = null;
             vm.table_clicked = null;
+            vm.tables = [];
+            vm.users = [];
             FlashService.clearFlashMessage();
         }
 
@@ -100,6 +103,7 @@
                    user.id = $rootScope.globals.currentUser.id;
                    vm.users.push(user);
                    updateSeatOnTable(-1);
+                   changeUsersInTable(table_id, vm.users);
                 }
                 else {
                     FlashService.Error(res.message);
@@ -110,9 +114,11 @@
         function leaveTable(table_id) {
             FlashService.clearFlashMessage();
             TablesService.leaveTable(vm.user_id, table_id).then(function (res) {
+                console.log(res);
                 if (res.status == 'success') {
-                    removeUserFromTable(vm.user_id, vm.users);
+                    removeUserInTable(vm.user_id, vm.users);
                     updateSeatOnTable(1);
+                    changeUsersInTable(table_id, vm.users);
                     vm.table_joined = null;
                 }
                 else {
@@ -121,7 +127,15 @@
             })
         }
 
-        function removeUserFromTable(user, users_in_table) {
+        function changeUsersInTable(table_id, new_users_in_table) {
+            angular.forEach(vm.tables, function (value, key) {
+                if (value.id == table_id) {
+                    value.users = new_users_in_table;
+                }
+            })
+        }
+
+        function removeUserInTable(user, users_in_table) {
             var index = 0;
             angular.forEach(users_in_table, function (value, key) {
                 if (user == value.id) {
