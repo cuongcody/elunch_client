@@ -280,6 +280,9 @@
 .btn-choose-table {
     margin-bottom: 20px;
 }
+.detail-table {
+    margin-bottom: 10px;
+}
 
 .menu-item:hover h3 {
     color: #FF7600;
