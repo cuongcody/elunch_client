@@ -137,6 +137,12 @@
     padding: 20px;
     width: 450px;
 }
+/* Small devices, Tablets (>767px) */
+@media screen and (max-width: 768px) {
+
+    .login { width: 300px;}
+}
+
 .login .logo-login {
     text-align: center;
     background : url('../img/favicon.ico') no-repeat;
