@@ -28,7 +28,7 @@
         <div class="row all-dishes">
             <h2 class="h3 text-center animation-slideUp"><strong>-- All dishes --</strong></h2>
             <div class="row portfolio" ng-if="$index % 6 == 0" ng-repeat="dish in vm.dishes">
-                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index].id}}" ng-click="vm.readyForVote(vm.dishes[$index])">
+                <div class="col-xs-12 col-sm-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index].id}}" ng-click="vm.readyForVote(vm.dishes[$index])">
                     <a href="javascript:void(0);">
                         <img src="{{vm.dishes[$index].image}}" alt="Image" class="img-responsive">
                         <span class="portfolio-item-info add-vote"><strong>{{vm.dishes[$index].name}}</strong>
@@ -36,7 +36,7 @@
                         </span>
                     </a>
                 </div>
-                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 1].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 1])" ng-if="$index + 1 < vm.dishes.length">
+                <div class="col-xs-12 col-sm-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 1].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 1])" ng-if="$index + 1 < vm.dishes.length">
                     <a href="javascript:void(0);">
                         <img src="{{vm.dishes[$index + 1].image}}" alt="Image" class="img-responsive">
                         <span class="portfolio-item-info add-vote"><strong>{{vm.dishes[$index + 1].name}}</strong>
@@ -44,7 +44,7 @@
                         </span>
                     </a>
                 </div>
-                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 2].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 2])" ng-if="$index + 2 < vm.dishes.length">
+                <div class="col-xs-12 col-sm-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 2].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 2])" ng-if="$index + 2 < vm.dishes.length">
                     <a href="javascript:void(0);">
                         <img src="{{vm.dishes[$index + 2].image}}" alt="Image" class="img-responsive">
                         <span class="portfolio-item-info add-vote"><strong>{{vm.dishes[$index + 2].name}}</strong>
@@ -52,7 +52,7 @@
                         </span>
                     </a>
                 </div>
-                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 3].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 3])" ng-if="$index + 3 < vm.dishes.length">
+                <div class="col-xs-12 col-sm-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 3].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 3])" ng-if="$index + 3 < vm.dishes.length">
                     <a href="javascript:void(0);">
                         <img src="{{vm.dishes[$index + 3].image}}" alt="Image" class="img-responsive">
                         <span class="portfolio-item-info add-vote"><strong>{{vm.dishes[$index + 3].name}}</strong>
@@ -60,7 +60,7 @@
                         </span>
                     </a>
                 </div>
-                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 4].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 4])" ng-if="$index + 4 < vm.dishes.length">
+                <div class="col-xs-12 col-sm-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 4].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 4])" ng-if="$index + 4 < vm.dishes.length">
                     <a href="javascript:void(0);">
                         <img src="{{vm.dishes[$index + 4].image}}" alt="Image" class="img-responsive">
                         <span class="portfolio-item-info add-vote"><strong>{{vm.dishes[$index + 4].name}}</strong>
@@ -68,7 +68,7 @@
                         </span>
                     </a>
                 </div>
-                <div class="col-xs-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 5].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 5])" ng-if="$index + 5 < vm.dishes.length">
+                <div class="col-xs-12 col-sm-2 portfolio-item animation-fadeInQuick dish" id="{{vm.dishes[$index + 5].id}}" ng-click="vm.readyForVote(vm.dishes[$index + 5])" ng-if="$index + 5 < vm.dishes.length">
                     <a href="javascript:void(0);">
                         <img src="{{vm.dishes[$index + 5].image}}" alt="Image" class="img-responsive">
                         <span class="portfolio-item-info add-vote"><strong>{{vm.dishes[$index + 5].name}}</strong>
