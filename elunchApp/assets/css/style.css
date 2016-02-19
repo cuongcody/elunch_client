@@ -315,6 +315,7 @@
   list-style: none;
 }
 .slide {
+    position: relative;
     margin: 5px;
     float: left;
     width: 100px;
@@ -326,17 +327,66 @@
     background-color: #7db831;
     border-color: #7db831;
 }
-.slider:hover .arrows {
+.slider:hover .arrows{
     display: block;
+}
+.slide:hover .add-preferences {
+    display: inline;
 }
 .preferences-item-selected {
     background-color: #e74c3c;
     border-color: #e74c3c;
 }
+.add-preferences {
+    position: absolute;
+    top : 2%;
+    right: 3%;
+    background: #fff;
+    color: #000;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px 1px #999;
+    display: none;
+    font-size: 10px;
+    padding: 0px 2px;
+
+}
+.all-preferences {
+    margin-bottom: 20px;
+}
+.all-preferences span {
+    font-weight: bold;
+    background: #1bbae1;
+    color: #fff;
+    padding: 8px;
+}
+.selected-preferences {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.selected-preferences span{
+     background: #e74c3c;
+         font-weight: bold;
+    color: #fff;
+    padding: 8px;
+}
+.remove-preferences {
+    position: absolute;
+    top : 2%;
+    right: 3%;
+    background: #fff;
+    color: #000;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px 1px #999;
+    display: none;
+    font-size: 10px;
+    padding: 0px 2px;
+
+}
 .arrows {
   position: absolute;
   display: none;
-  top: 10px;
+  top: 1%;
   right: 0px;
 }
 .arrows img {
@@ -351,6 +401,31 @@
     font-weight: bold;
     background: #f2f2f2;
 }
+.preferences-section {
+    border-radius: 3px;
+    border: 1px solid #dddddd;
+    overflow: hidden;
+    margin-bottom: 20px;
+
+}
+
+.user-preferences-section {
+    border: 1px solid #1bbae1;
+}
+
+.list-preferences {
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+.list-user-preferences {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #dfdfdf;
+    overflow: hidden;
+    margin-bottom: -10px;
+
+}
+
 
 /*.slide.ng-hide-add.ng-hide-add-active,
 .slide.ng-hide-remove {
