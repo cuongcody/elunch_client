@@ -351,13 +351,6 @@
     font-weight: bold;
     background: #f2f2f2;
 }
-.preferences-section {
-    border-radius: 3px;
-    border: 1px solid #dddddd;
-    overflow: hidden;
-    margin-bottom: 20px;
-    padding: 10px 0px;
-}
 
 /*.slide.ng-hide-add.ng-hide-add-active,
 .slide.ng-hide-remove {
