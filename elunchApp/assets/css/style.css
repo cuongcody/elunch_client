@@ -161,6 +161,31 @@
     margin-right: 20px;
 }
 
+@media screen and (min-width: 768px) {
+
+    .weekly-menu img, .favourite-dishes img {
+        position: relative;
+        float: left;
+        width:  200px;
+        height: 100px;
+        background-position: 50% 50%;
+        background-repeat:   no-repeat;
+        background-size:     cover;
+    }
+}
+
+@media screen and (max-width: 768px) {
+        .favourite-dishes img {
+            position: relative;
+            float: left;
+            width:  350px;
+            height: 200px;
+            background-position: 50% 50%;
+            background-repeat:   no-repeat;
+            background-size:     cover;
+        }
+    }
+
 .one-vote, .delete-vote {
     display: none;
 }
