@@ -23,7 +23,7 @@
     function TablesController(TablesService, $rootScope, FlashService) {
         var vm = this;
         var shift_id;
-        vm.isTablesNormal = true;
+        vm.isNormalDay = true;
         vm.key = new Date();
         vm.tables = [];
         vm.users = [];
@@ -37,11 +37,11 @@
             vm.user_id = $rootScope.globals.currentUser.id;
             vm.want_vegan_meal = $rootScope.globals.currentUser.want_vegan_meal;
             shift_id = $rootScope.globals.currentUser.shift_id;
-            getTables(shift_id, false);
+            getTables(shift_id, false, vm.want_vegan_meal);
         }
 
-        function getTables(shift_id, for_vegan) {
-            TablesService.getTablesByShift(shift_id, for_vegan).then(function (res) {
+        function getTables(shift_id, for_vegan, want_vegan_meal) {
+            TablesService.getTablesByShift(shift_id, for_vegan, want_vegan_meal).then(function (res) {
                 if (res.status == 'success') {
                     vm.tables = res.data;
                     angular.forEach(vm.tables, function (value1, key1) {
@@ -60,23 +60,19 @@
 
         function selectedTab() {
             clearData();
-            vm.isTablesNormal = !vm.isTablesNormal;
-            if (vm.isTablesNormal) {
-                getTables(shift_id, false);
-            }
-            else if (!vm.isTablesNormal && vm.want_vegan_meal) {
-                getTables(shift_id, true);
+            vm.isNormalDay = !vm.isNormalDay;
+            if (vm.isNormalDay) {
+                getTables(shift_id, false, vm.want_vegan_meal);
             }
             else {
-                vm.users = [];
-                vm.tables = [];
-                FlashService.Error("You don't want to eat vegan meals");
+                getTables(shift_id, true, vm.want_vegan_meal);
             }
         }
 
         function clearData() {
             vm.table_joined = null;
             vm.table_clicked = null;
+            vm.selectedTable = null;
             vm.tables = [];
             vm.users = [];
             FlashService.clearFlashMessage();
@@ -93,7 +89,8 @@
 
         function joinTable(table_id) {
             FlashService.clearFlashMessage();
-            var data = 'user_id=' + vm.user_id + '&table_id=' + table_id;
+            var isVeganDay = !vm.isNormalDay;
+            var data = 'user_id=' + vm.user_id + '&table_id=' + table_id + '&is_vegan_day=' + isVeganDay;
             TablesService.joinTable(data).then(function (res) {
                 if (res.status == 'success') {
                    vm.table_joined = vm.table_clicked;
@@ -113,8 +110,8 @@
 
         function leaveTable(table_id) {
             FlashService.clearFlashMessage();
-            TablesService.leaveTable(vm.user_id, table_id).then(function (res) {
-                console.log(res);
+            var isVeganDay = !vm.isNormalDay;
+            TablesService.leaveTable(vm.user_id, table_id, isVeganDay).then(function (res) {
                 if (res.status == 'success') {
                     removeUserInTable(vm.user_id, vm.users);
                     updateSeatOnTable(1);

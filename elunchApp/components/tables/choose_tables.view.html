@@ -10,17 +10,21 @@
             <div class='col-xs-12 col-sm-6'>
                 <div class="site-block text-center">
                     <div class="btn-group portfolio-filter">
-                        <a href="javascript:void(0)" class="btn btn-primary" ng-click="vm.selectedTab()" ng-class="{'active' : vm.isTablesNormal }">Tables normal</a>
-                        <a href="javascript:void(0)" class="btn btn-primary" ng-click="vm.selectedTab()" ng-class="{'active' : !vm.isTablesNormal }">Tables vegan</a>
+                        <a href="javascript:void(0)" class="btn btn-primary" ng-click="vm.selectedTab()" ng-class="{'active' : vm.isNormalDay }">NORMAL DAY</a>
+                        <a href="javascript:void(0)" class="btn btn-primary" ng-click="vm.selectedTab()" ng-class="{'active' : !vm.isNormalDay }">VEGAN DAY</a>
                     </div>
                 </div>
                 <div class="site-block text-center text-warning">
-                   <strong>(*) You are joinning in this table</strong>
+                    <div class="alert alert-info" role="alert" ng-show="vm.tables">
+                        <div><strong>Start time:</strong> {{vm.tables[0].start_time}}</div>
+                    </div>
+                   <strong ng-show="vm.table_joined">(*) You are joinning in this table</strong>
+                   <strong ng-show="!vm.table_joined">You haven't joined in any table yet</strong>
                    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
                 </div>
                 <div class="row portfolio text-center">
                     <div class="col-xs-12 col-sm-4 portfolio-item" ng-repeat="table in vm.tables" ng-click="vm.getUsersInTable(table)">
-                        <div class="table" ng-class="{'table-active': vm.selectedTable === table.id, 'table-vegan' : !vm.isTablesNormal}">
+                        <div class="table" ng-class="{'table-active': vm.selectedTable === table.id, 'table-vegan' : table.for_vegans == true}">
                             <h3>Table {{table.name}} <span ng-show="vm.table_joined == table">(*)</span></h3>
                             <p>
                                 <strong>Available Seats:</strong> {{table.available_seats}}/{{table.seats}}

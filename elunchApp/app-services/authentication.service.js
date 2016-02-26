@@ -62,19 +62,25 @@
             };
 
             $http.defaults.headers.common['Authorization'] = 'Bearer ' + user['authentication_token']; // jshint ignore:line
-            $cookieStore.put('globals', $rootScope.globals);
+            storeCookie($rootScope.globals);
         }
 
         function updateCredentials(globals) {
             $http.defaults.headers.common['Authorization'] = 'Bearer ' + globals.currentUser.authentication_token;
+            storeCookie(globals);
+        }
+
+        function storeCookie(cookie) {
+            var expireDate = new Date();
+            expireDate.setDate(expireDate.getDate() + 5);
             $cookieStore.remove('globals');
-            $cookieStore.put('globals', globals);
+            $cookieStore.put('globals', cookie);
         }
 
         function ClearCredentials() {
             $rootScope.globals = {};
             $cookieStore.remove('globals');
-            $http.defaults.headers.common.Authorization = 'Bearer';
+            $http.defaults.headers.common.Authorization = '';
         }
     }
 

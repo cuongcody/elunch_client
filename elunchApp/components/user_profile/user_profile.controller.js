@@ -116,26 +116,28 @@
             var data = [];
             data['user_id'] = user_id;
             data['params'] = 'want_vegan_meal=' + vm.isVegan;
-            UserService.Update(data)
+            if ($rootScope.globals.currentUser.want_vegan_meal != vm.isVegan) {
+                UserService.Update(data)
+                    .then(function (res) {
+                        if (res.status == 'success')
+                        {
+                            $rootScope.globals.currentUser.want_vegan_meal = vm.isVegan;
+                            AuthenticationService.updateCredentials($rootScope.globals);
+                        }
+                        else
+                        {
+                            FlashService.Error(res.message);
+                        }
+                    });
+            }
+            var data2 = [];
+            data2['params'] = 'preferences_ids=' + selectedPreferences + '&user_id=' + user_id;
+            UserService.postPreferences(data2)
                 .then(function (res) {
+                    vm.dataLoading = false;
                     if (res.status == 'success')
                     {
-                        $rootScope.globals.currentUser.want_vegan_meal = vm.isVegan;
-                        AuthenticationService.updateCredentials($rootScope.globals);
-                        var data2 = [];
-                        data2['params'] = 'preferences_ids=' + selectedPreferences + '&user_id=' + user_id;
-                        UserService.postPreferences(data2)
-                            .then(function (res) {
-                                vm.dataLoading = false;
-                                if (res.status == 'success')
-                                {
-                                    FlashService.Success(res.message);
-                                }
-                                else
-                                {
-                                    FlashService.Error(res.message);
-                                }
-                            });
+                        FlashService.Success(res.message);
                     }
                     else
                     {
