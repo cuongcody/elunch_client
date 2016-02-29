@@ -76,7 +76,6 @@
         // private functions
 
         function handleSuccess(res) {
-            console.log("response: " + res);
             return res.data;
         }
 

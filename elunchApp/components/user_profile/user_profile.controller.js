@@ -113,26 +113,10 @@
             var lastIndexOfChar = selectedPreferences.lastIndexOf(';');
             if (lastIndexOfChar != -1) selectedPreferences = selectedPreferences.substr(0, lastIndexOfChar);
             vm.dataLoading = true;
+
             var data = [];
-            data['user_id'] = user_id;
-            data['params'] = 'want_vegan_meal=' + vm.isVegan;
-            if ($rootScope.globals.currentUser.want_vegan_meal != vm.isVegan) {
-                UserService.Update(data)
-                    .then(function (res) {
-                        if (res.status == 'success')
-                        {
-                            $rootScope.globals.currentUser.want_vegan_meal = vm.isVegan;
-                            AuthenticationService.updateCredentials($rootScope.globals);
-                        }
-                        else
-                        {
-                            FlashService.Error(res.message);
-                        }
-                    });
-            }
-            var data2 = [];
-            data2['params'] = 'preferences_ids=' + selectedPreferences + '&user_id=' + user_id;
-            UserService.postPreferences(data2)
+            data['params'] = 'preferences_ids=' + selectedPreferences + '&user_id=' + user_id;
+            UserService.postPreferences(data)
                 .then(function (res) {
                     vm.dataLoading = false;
                     if (res.status == 'success')
@@ -145,6 +129,24 @@
                     }
                 });
 
+            var data2 = [];
+            data2['user_id'] = user_id;
+            data2['params'] = 'want_vegan_meal=' + vm.isVegan;
+            if (vm.user.want_vegan_meal != vm.isVegan) {
+                UserService.Update(data2)
+                    .then(function (res) {
+                        if (res.status == 'success')
+                        {
+                            $rootScope.globals.currentUser.want_vegan_meal = vm.isVegan;
+                            AuthenticationService.updateCredentials($rootScope.globals);
+                            loadCurrentUser();
+                        }
+                        else
+                        {
+                            FlashService.Error(res.message);
+                        }
+                    });
+            }
         }
 
         function changePassword() {

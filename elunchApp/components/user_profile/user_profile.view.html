@@ -6,7 +6,15 @@
                     <img class='img-thumbnail img-circle img-responsive' src='{{vm.user.avatar_content_file}}'>
                     <h3 class="h2 site-heading"><strong>{{vm.user.first_name}}</strong> {{vm.user.last_name}}</h3>
                     <div>
-                        <strong>Lunch shift:</strong> {{vm.user.start_time}} - {{vm.user.end_time}}<br>
+                        <h4><strong>Lunch shift</strong></h4>
+                        <div>
+                            <div>
+                                <strong>Normal day: </strong>{{vm.user.start_time}}
+                            </div>
+                            <div ng-show="vm.user.want_vegan_meal">
+                                <strong>Vegan day: </strong>{{vm.user.vegan_day_start_time}}
+                            </div>
+                        </div>
                         <i class="fa fa-envelope-o"></i> <a href="javascript:void(0)">{{vm.user.email}}</a><br>
                         <button ng-click='vm.isPreferencesView = !vm.isPreferencesView' class='btn btn-success'>{{vm.isPreferencesView && 'Change password' || 'Preferences' }}</button>
                     </div>
